@@ -1,5 +1,5 @@
 use crate::types;
-use actix_web::{HttpResponse, Responder};
+use actix_web::{post, HttpResponse, Responder};
 
 #[post("/")]
 pub async fn post_handler(req_body: String) -> impl Responder {

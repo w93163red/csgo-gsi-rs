@@ -74,11 +74,13 @@ pub struct PostBody {
 #[cfg(test)]
 mod test {
     use crate::types::PostBody;
+    use anyhow::Result;
     use std::fs;
 
     #[test]
-    fn test_parser() {
-        let sample_post = fs::read_to_string("sample_post").unwrap();
-        let json: PostBody = serde_json::from_str(&sample_post).unwrap();
+    fn test_parser() -> Result<()> {
+        let sample_post = fs::read_to_string("sample_post")?;
+        assert!(serde_json::from_str::<PostBody>(&sample_post).is_ok());
+        Ok(())
     }
 }

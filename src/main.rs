@@ -1,5 +1,4 @@
-use actix_web::{post, App, HttpResponse, HttpServer, Responder};
-use serde_json;
+use actix_web::{App, HttpServer};
 mod post_handler;
 mod types;
 
