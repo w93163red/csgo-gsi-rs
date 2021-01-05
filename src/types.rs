@@ -1,18 +1,18 @@
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Default, Debug, Deserialize, Serialize)]
 pub struct Auth {
     token: String,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Default, Debug, Deserialize, Serialize)]
 pub struct Bomb {
     position: String,
     state: String,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Default, Debug, Deserialize, Serialize)]
 pub struct Map {
     current_spectators: i32,
     mode: String,
@@ -25,13 +25,13 @@ pub struct Map {
     team_t: HashMap<String, i8>,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Default, Debug, Deserialize, Serialize)]
 pub struct PhaseCountDowns {
     phase: String,
     phase_ends_in: String,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Default, Debug, Deserialize, Serialize)]
 pub struct Player {
     activity: String,
     forward: String,
@@ -46,7 +46,7 @@ pub struct Player {
     weapons: HashMap<String, serde_json::Value>,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Default, Debug, Deserialize, Serialize)]
 pub struct Provider {
     appid: i32,
     name: String,
@@ -55,20 +55,25 @@ pub struct Provider {
     version: i32,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Default, Debug, Deserialize, Serialize)]
 pub struct Round {
     phase: String,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Default, Debug, Deserialize, Serialize)]
 pub struct PostBody {
     auth: Auth,
     bomb: Bomb,
     map: Map,
     phase_countdowns: PhaseCountDowns,
-    player: Player,
+    pub player: Player,
     provider: Provider,
     round: Round,
+}
+
+#[derive(Default, Debug, Deserialize, Serialize)]
+pub struct GameState {
+    pub player: Player,
 }
 
 #[cfg(test)]
