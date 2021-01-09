@@ -1,6 +1,6 @@
-use std::{fs, sync::RwLock};
+use std::sync::RwLock;
 
-use crate::types::{self, PostBody};
+use crate::types;
 use actix_web::{get, post, web, HttpResponse, Responder};
 use types::GameState;
 
@@ -12,6 +12,8 @@ pub async fn post_handler(
     if let Ok(data) = serde_json::from_str::<types::PostBody>(&req_body) {
         let new_player_info = data.player;
         game_state.write().unwrap().player = new_player_info;
+    } else {
+        println!("cannot parse data");
     }
     HttpResponse::Ok()
 }
